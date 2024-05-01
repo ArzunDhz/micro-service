@@ -3,7 +3,8 @@ const nextConfig = {
 
     images: {
         domains: [
-            "picsum.photos"
+            "picsum.photos",
+            "m.media-amazon.com"
         ]
     }
 };

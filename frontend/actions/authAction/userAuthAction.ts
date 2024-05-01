@@ -6,7 +6,7 @@ export const registerAccount = async (data: any) =>
 {
     try
     {
-        const response = await axios.post(`${API_URL}/createAdminAccount`, data);
+        const response = await axios.post(`${API_URL}/registerAccount`, data);
         return response.data;
     } catch (error: any)
     {
@@ -63,3 +63,15 @@ export const resetPassword = async (data: any) =>
     }
 };
 
+
+export const userlogout = async () =>
+{
+    try
+    {
+        const response = await axios.get(`${API_URL}/logout`, { withCredentials: true });
+        return response.data;
+    } catch (error: any)
+    {
+        return error.response?.data;
+    }
+};

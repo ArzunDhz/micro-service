@@ -13,8 +13,6 @@ export const activateAccount = async (req: Request, res: Response, next: NextFun
 
         //validating the value with zod
         activateAccountSchema.parse(req.body)
-
-
         //checking if the email with that  token is present in the body or not
         const isTokenPresent = await AccountActivationModel.findOne({
             email: email,

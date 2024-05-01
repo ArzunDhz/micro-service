@@ -1,4 +1,4 @@
-import LogoDark from './logo-dark.png'
-import LogoWhite from './logo-white.png'
 
-export { LogoDark, LogoWhite }
+import PlaceHolderImage from './placeholder.svg'
+
+export { PlaceHolderImage }

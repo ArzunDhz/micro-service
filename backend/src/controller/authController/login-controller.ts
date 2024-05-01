@@ -7,7 +7,6 @@ import { sendUserSessionCookie } from "../../utils/send-cookie";
 import ErrorHandler from "../../middleware/error-handeler";
 import { sendEmail } from "../../libs/sendMailLibs/send-email";
 
-
 export const loginToAccount = async (req: Request, res: Response, next: NextFunction) =>
 {
     try

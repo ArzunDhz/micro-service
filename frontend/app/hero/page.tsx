@@ -1,9 +1,10 @@
+import { HeroSection } from '@/components/hero/hero-section'
 import React from 'react'
 
 const DashBoard = () =>
 {
     return (
-        <div>DashBoard</div>
+        <HeroSection />
     )
 }
 

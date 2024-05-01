@@ -13,7 +13,7 @@ const AuthLayout = ({ children }: AuthLayoutPropsType) =>
     const token = cookieStore.get('token')
     if (token)
     {
-        redirect('/dashboard')
+        redirect('/hero')
     }
     return (
         <div className="  w-full h-full flex justify-center items-center">

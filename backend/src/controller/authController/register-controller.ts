@@ -6,6 +6,8 @@ import { generateVerificationToken } from "../../libs/generateTokenLibs/generate
 import { sendEmail } from "../../libs/sendMailLibs/send-email";
 import ErrorHandler from "../../middleware/error-handeler";
 
+
+
 export const registerAccount = async (req: Request, res: Response, next: NextFunction) =>
 {
     try

@@ -11,6 +11,7 @@ export const sendUserSessionCookie = (user: any, res: Response, message: string,
         expires: new Date(Date.now() + 2592000000),
     }).json({
         user,
+        token,
         success: true,
         message
     }).status(statuscode)

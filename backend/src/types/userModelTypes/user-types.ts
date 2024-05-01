@@ -1,4 +1,4 @@
-import { Document, Schema, model } from "mongoose";
+import { Document, Schema, Types } from "mongoose";
 
 export interface UserModelType extends Document
 {
@@ -8,40 +8,12 @@ export interface UserModelType extends Document
     createdAt: Date;
     emailActivated?: Date;
     role: string;
-    accountDetails?: Schema.Types.ObjectId | AccountDetailsModelType;
 }
 
-export interface AccountDetailsModelType extends Document
+export interface TaskModelType extends Document
 {
-    nickname?: string;
-    organizatonAddress?: string;
-    organizationName?: string;
-    position?: string;
-    workEmail?: string;
-    homeAddress?: string;
-    phoneNumbers?: string[];
-    externalLinks?: string[];
-    profilePicture?: string;
-    coverPicture?: string;
-    connections?: Schema.Types.ObjectId[] | [];
-    socialUrls?: Schema.Types.ObjectId | SocialUrlsModelType;
-}
-
-export interface SocialUrlsModelType
-{
-    whatsapp?: string;
-    viber?: string;
-    facebook?: string;
-    instagram?: string;
-    twitter?: string;
-    youtube?: string;
-    behance?: string;
-    github?: string;
-    dribbble?: string;
-    pinterest?: string;
-    tiktok?: string;
-    thread?: string;
-    linkedin?: string;
-    discord?: string;
-    wechat?: string;
+    title: string;
+    task: string;
+    createdAt: Date;
+    user: Types.ObjectId; // Reference to UserModel
 }

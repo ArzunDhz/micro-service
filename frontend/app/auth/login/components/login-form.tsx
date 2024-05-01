@@ -20,12 +20,14 @@ import { FormErrorMessage } from "@/components/auth/FormErrorMessage"
 import { loginToAccount } from "@/actions/authAction/userAuthAction"
 import { useState } from "react"
 import Link from "next/link"
-
+import { useRouter } from 'next/navigation'
+import { useAuthStore } from "@/store/store"
 
 
 const LoginForm = () =>
 {
-
+    const { setUserData } = useAuthStore()
+    const router = useRouter()
     const [errorMessage, setErrorMessage] = useState('')
     const [successMessage, setSuccessMessage] = useState('')
     const [isLoading, setIsLoading] = useState(false)
@@ -47,10 +49,11 @@ const LoginForm = () =>
             {
                 form.reset()
                 setSuccessMessage(data.message)
+                setUserData(data)
+                router.push('/hero')
                 setErrorMessage('')
             } else
             {
-                console.log(data)
                 setErrorMessage(data.message)
                 setSuccessMessage('')
             }

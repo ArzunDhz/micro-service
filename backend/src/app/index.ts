@@ -1,42 +1,61 @@
-import express, { Express } from 'express'
-import { conntectToDatabase } from '../config/connect-database'
-import cors from 'cors'
+import express, { Express } from 'express';
+
+import cors from 'cors';
 import { zodMiddleware } from '../middleware/zod-middleware';
 import morgan from "morgan";
 import { errorMiddleware } from '../middleware/error-handeler';
-import authRouter from '../routes/authRoute/auth-route'
+import allRouter from '../routes';
+import cookieParser from 'cookie-parser';
+import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
+import { conntectToDatabase } from '../config/connect-database';
+import env from '../utils/validate-ENV'
+export const app: Express = express();
 
-export const app: Express = express()
-
+// Middleware setup
 app.use(express.json({ limit: "50mb" }));
-conntectToDatabase()
-
-//middleware config
-const corsOptions = {
-    origin: ['http://localhost:3000',],
+app.use(cookieParser());
+app.use(cors({
+    origin: ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:5174'],
     methods: ['*'],
-    credentials: true,
-};
-
-//middlewares 
-app.use(cors(corsOptions))
+    credentials: true
+}));
 app.use(morgan('dev'));
 app.use(zodMiddleware);
 
-//routes for auth
-app.use("/admin-api/v1", authRouter)
+// Database connection
+conntectToDatabase();
 
+// Swagger setup
+const swaggerOptions = {
+    swaggerDefinition: {
+        openapi: "3.0.0",
+        info: {
+            title: "API Documentation",
+            version: "1.0.0",
+            description: "API documentation for your application"
+        },
+        servers: [
+            {
+                url: `http://localhost:${env.PORT}`,
+            }
+        ]
+    },
+    apis: ["./src/routes/*.ts"]
+};
+const specs = swaggerJsdoc(swaggerOptions);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
+// Routes
+app.use("/api/v1", allRouter);
 
-
-//test
+// Test route
 app.get('/', (req, res) =>
 {
-    res.json({ message: "Server is working just fine" })
-})
+    res.json({ message: "Server is working just fine" });
+});
 
-app.use(errorMiddleware)
-
-
+// Error middleware
+app.use(errorMiddleware);
 
 
