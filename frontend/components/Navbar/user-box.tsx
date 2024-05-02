@@ -46,7 +46,11 @@ const UserBox = () =>
             <DropdownMenuContent>
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
+                <DropdownMenuItem>
+                    <Button variant={"link"}>
+                        <Link href={'/bookmark'}>BookMark</Link>
+                    </Button>
+                </DropdownMenuItem>
                 <DropdownMenuItem>
                     <Button variant={"link"} onClick={handelLogout}>Logout</Button>
                 </DropdownMenuItem>

@@ -1,12 +1,36 @@
+"use client"
 import { PlaceHolderImage } from '@/public/images'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { IMovie } from './page'
+import { Bookmark, VideoIcon } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { addBookMark } from '@/actions/bookMarkAction/book-mark-action'
+import { toast } from 'sonner'
 
 
 const MainMovie = ({ movieData, movieImage }: { movieData: IMovie | null, movieImage: string }) =>
 {
+    const [isPending, setIsPending] = React.useState(false)
+    const handelBookMark = async () =>
+    {
+        try
+        {
+            setIsPending(true)
+            const data = await addBookMark(movieData?.data)
+            toast.success(data.message)
+        } catch (error)
+        {
+            console.log(error)
+        } finally
+        {
+            setIsPending(false)
+        }
+
+    }
+    console.log(movieImage)
+    console.log(movieData)
     return (
         <>
             <div className="container grid gap-6 px-4 md:px-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_550px]">
@@ -24,13 +48,24 @@ const MainMovie = ({ movieData, movieImage }: { movieData: IMovie | null, movieI
                             {movieData?.data.overview}
                         </p>
                     </div>
-                    <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                        <a
-                            className="inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
-                            href={`https://www.youtube.com/results?search_query=${movieData?.data.original_title}`}
-                        >
-                            Watch Trailer
-                        </a>
+                    <div className=" flex gap-x-4">
+                        <div className="flex flex-col gap-2 min-[400px]:flex-row">
+                            <a
+                                className="inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
+                                href={`https://www.youtube.com/results?search_query=${movieData?.data.original_title}`}
+                            >
+                                Watch Trailer <VideoIcon className=' ml-2' />
+                            </a>
+                        </div>
+                        <div className="flex flex-col gap-2 min-[400px]:flex-row">
+                            <Button
+                                disabled={isPending}
+                                onClick={handelBookMark}
+                                className="inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
+                            >
+                                BookMark <Bookmark className=' ml-2' />
+                            </Button>
+                        </div>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                         <div>

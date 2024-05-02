@@ -36,7 +36,7 @@ export function HeroSection()
             <Input
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
-              className="flex-1 h-12 px-4 rounded-md text-gray-900 "
+              className="flex-1 h-12 px-4 rounded-md  "
               placeholder="Search for a movie..."
               type="text"
             />
