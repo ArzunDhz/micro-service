@@ -10,12 +10,6 @@ interface AuthLayoutPropsType
 
 const AuthLayout = ({ children }: AuthLayoutPropsType) =>
 {
-    // const cookieStore = cookies()
-    // const token = cookieStore.get('token')
-    // if (token)
-    // {
-    //     redirect('/hero')
-    // }
     return (
         <div className="  w-full h-full flex justify-center items-center">
             {children}
