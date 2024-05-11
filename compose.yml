@@ -1,7 +1,5 @@
-# specify the version of docker-compose
 version: "3.8"
 
-# define the services/containers to be run
 services:
   web:
     depends_on: 
@@ -20,9 +18,9 @@ services:
         - path: ./frontend
           target: /app
           action: sync
-  api: 
-    build: ./backend
 
+  api:
+    build: ./backend
     ports: 
       - 4000:4000
     env_file:
@@ -37,3 +35,12 @@ services:
           target: /app
           action: sync
 
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:

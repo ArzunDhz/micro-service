@@ -24,13 +24,12 @@ export const addBookMark = async (req: Request, res: Response, next: NextFunctio
             original_title,
             overview,
             popularity,
-            release_date,
+            release_date: new Date(release_date).toISOString(),
             revenue,
             runtime,
             imageUrl,
             user: userId
         })
-        console.log(addTask)
         res.json({ success: true, message: "BookMarked" })
     } catch (error)
     {

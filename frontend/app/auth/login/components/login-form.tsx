@@ -50,7 +50,7 @@ const LoginForm = () =>
                 form.reset()
                 setSuccessMessage(data.message)
                 setUserData(data)
-                router.push('/hero')
+                router.push('/')
                 setErrorMessage('')
             } else
             {

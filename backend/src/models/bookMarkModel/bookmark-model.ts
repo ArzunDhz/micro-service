@@ -12,7 +12,7 @@ const BookMarkModelSchema = new Schema<BookMarkModelType>({
     original_title: { type: String },
     overview: { type: String },
     popularity: { type: Number },
-    release_date: { type: String },
+    release_date: { type: Date },
     revenue: { type: Number },
     runtime: { type: Number },
     status: { type: String },
@@ -22,7 +22,8 @@ const BookMarkModelSchema = new Schema<BookMarkModelType>({
     cast: { type: String },
     director: { type: String },
     user: { type: Schema.Types.ObjectId, ref: 'User' },
-    imageUrl: { type: String }
+    imageUrl: { type: String },
+    createdAt: { type: Date, default: Date.now },
 });
 
 export const BookMarkModel = model<BookMarkModelType>('BookMarkTable', BookMarkModelSchema);

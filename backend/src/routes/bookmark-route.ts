@@ -90,24 +90,23 @@ router.post('/add-bookmark', addBookMark);
  *   delete:
  *     tags:
  *       - BookMark
- *     summary: Delete a Bookmark .
- *     description: Delete a Bookmark .
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               id:
- *                 type: string
+ *     summary: Delete a Bookmark.
+ *     description: Delete a Bookmark by ID.
+ *     parameters:
+ *       - in: query
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
  *         description: Successful operation.
  *       500:
  *         description: Internal server error.
  */
+
 router.delete('/delete-bookmark', deleteBookMark);
+
 
 /**
  * @swagger
@@ -123,6 +122,29 @@ router.delete('/delete-bookmark', deleteBookMark);
  *         schema:
  *           type: integer
  *         description: The page number for pagination.
+ *       - in: query
+ *         name: revenue
+ *         schema:
+ *           type: string
+ *         description: Revenue.
+ *       - in: query
+ *         name: sort
+ *         schema:
+ *           type: string
+ *           enum: [revenueasc, revenuedesc]
+ *         description: Sort order for revenue. Use 'revenueasc' for ascending order and 'revenuedesc' for descending order.
+ *       - in: query
+ *         name: startDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *         description: Start date for filtering by release date.
+ *       - in: query
+ *         name: endDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *         description: End date for filtering by release date.
  *     responses:
  *       200:
  *         description: Successful operation.
@@ -136,6 +158,8 @@ router.delete('/delete-bookmark', deleteBookMark);
  *       500:
  *         description: Internal server error.
  */
+
+
 router.get('/get-all-bookmark', getAllBookMarks);
 
 export default router;

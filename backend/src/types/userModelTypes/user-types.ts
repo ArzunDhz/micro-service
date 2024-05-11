@@ -10,10 +10,3 @@ export interface UserModelType extends Document
     role: string;
 }
 
-export interface TaskModelType extends Document
-{
-    title: string;
-    task: string;
-    createdAt: Date;
-    user: Types.ObjectId; // Reference to UserModel
-}

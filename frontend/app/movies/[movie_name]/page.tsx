@@ -60,12 +60,12 @@ const MoviePage = async ({ params }: { params: { movie_name: string } }) =>
     let recommentedData = null;
     try
     {
-        // const { data: mData } = await axios.get<IMovie>(`${url}/${decodedPath}`)
-        // const { data: rData } = await axios.get(`${url}/predict/${decodedPath}`)
-        // const { data: imageData } = await axios.get(`https://www.myapifilms.com/imdb/idIMDB?title=${decodedPath}&token=e7a9efa9-2cd6-46e0-89f0-5026fd325f99`)
-        // movieData = mData
-        // recommentedData = rData.Movies
-        // movieImage = (imageData?.data?.movies[0]?.urlPoster)
+        const { data: mData } = await axios.get<IMovie>(`${url}/${decodedPath}`)
+        const { data: rData } = await axios.get(`${url}/predict/${decodedPath}`)
+        const { data: imageData } = await axios.get(`https://www.myapifilms.com/imdb/idIMDB?title=${decodedPath}&token=e7a9efa9-2cd6-46e0-89f0-5026fd325f99`)
+        movieData = mData
+        recommentedData = rData.Movies
+        movieImage = (imageData?.data?.movies[0]?.urlPoster)
     } catch (error)
     {
         console.log(error)
@@ -74,7 +74,7 @@ const MoviePage = async ({ params }: { params: { movie_name: string } }) =>
     return (
         <section className="w-full py-12 md:py-24 lg:py-32">
             <MainMovie movieImage={movieImage} movieData={movieData} />
-            {/* <RecommendedMovies recommentedData={recommentedData} /> */}
+            <RecommendedMovies recommentedData={recommentedData} />
         </section>
     )
 }

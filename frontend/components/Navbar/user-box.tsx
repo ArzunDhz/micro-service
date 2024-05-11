@@ -48,7 +48,7 @@ const UserBox = () =>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
                     <Button variant={"link"}>
-                        <Link href={'/bookmark'}>BookMark</Link>
+                        <Link href={'/bookmark/1'}>BookMark</Link>
                     </Button>
                 </DropdownMenuItem>
                 <DropdownMenuItem>

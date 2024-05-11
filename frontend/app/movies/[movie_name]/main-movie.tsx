@@ -18,8 +18,9 @@ const MainMovie = ({ movieData, movieImage }: { movieData: IMovie | null, movieI
         try
         {
             setIsPending(true)
-            const data = await addBookMark(movieData?.data)
-            toast.success(data.message)
+            const data = { ...movieData?.data, imageUrl: movieImage }
+            const res = await addBookMark(data)
+            toast.success(res.message)
         } catch (error)
         {
             console.log(error)

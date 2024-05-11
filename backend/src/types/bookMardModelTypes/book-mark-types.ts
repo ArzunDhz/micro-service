@@ -10,7 +10,7 @@ export interface BookMarkModelType
     original_title: string;
     overview: string;
     popularity: number;
-    release_date: string;
+    release_date: Date;
     revenue: number;
     runtime: number;
     status: string;
@@ -21,4 +21,5 @@ export interface BookMarkModelType
     director: string;
     user: Types.ObjectId
     imageUrl: string
+    createdAt: Date
 }

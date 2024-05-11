@@ -8,7 +8,7 @@ const Navbar = () =>
 {
     return (
         <div
-            className="  fixed w-full px-[10vw] bg-background opacity-90  max-sm:px-4 flex justify-between items-center py-4  border-1 border-b-black"
+            className="  fixed w-full px-[10vw] z-[999] bg-background opacity-90  max-sm:px-4 flex justify-between items-center py-4  border-1 border-b-black"
         >
             <Link href={'/'}>
                 <h1 className=" text-2xl  font-bold">MoviesFlix</h1>

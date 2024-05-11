@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 
 import ErrorHandler from "../../middleware/error-handeler";
-import { TaskModel } from "../../models/userModel/user-model";
 import { BookMarkModel } from "../../models/bookMarkModel/bookmark-model";
 
 
@@ -13,9 +12,9 @@ export const deleteBookMark = async (req: Request, res: Response, next: NextFunc
         const userId = res.locals.user;
 
         // Check if the task exists for the given user
-        const bookMakrToDelete = await BookMarkModel.findOneAndDelete({ user: userId, _id: id });
+        const bookMarkToDelete = await BookMarkModel.findOneAndDelete({ user: userId, _id: id });
 
-        if (!bookMakrToDelete)
+        if (!bookMarkToDelete)
         {
             return next(new ErrorHandler(false, "BookMark not found", 404));
         }
